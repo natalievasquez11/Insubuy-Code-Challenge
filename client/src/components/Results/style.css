@@ -1,0 +1,28 @@
+.allQuotes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.quoteDiv {
+    background-color: rgb(247, 247, 247);
+    height: 175px;
+    width: 200px;
+    margin: 30px 30px 30px 30px;
+    text-align: center;
+}
+
+.quoteName {
+    font-size: 22px;
+    font-family: 'Arial';
+    margin: 0px;
+}
+
+.quoteDesc {
+    font-size: 18px;
+    font-family: 'Arial';
+    font-style: italic;
+    margin: 15px 0 15px 0;
+}
+
