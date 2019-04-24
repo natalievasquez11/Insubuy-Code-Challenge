@@ -22,56 +22,73 @@ class Form extends Component {
 
     render() {
         return (
-            <div>
+            <div className='mainDiv'>
                 <form>
-                    <label>Policy Maximum &#63;
-                        <input
-                        type='text'
-                        placeholder='Choose your policy maximum'
-                        value={this.state.policyMax}
-                        name='policyMax'
-                        onChange={this.handleInputChange}/>
-                    </label>
-                    <label>Age &#63;
-                        <input
-                        type='text'
-                        placeholder='Choose your age'
-                        value={this.state.age}
-                        name='age'
-                        onChange={this.handleInputChange}/>
-                    </label>
+                    <div className='formTop'>
+                        <p>Travel Insurance</p>
+                    </div>
+                    <div className="formRow">
+                        <label>Policy Maximum <i class="far fa-question-circle"></i>
+                            <br />
+                            <input
+                            type='text'
+                            placeholder='Choose your policy maximum'
+                            value={this.state.policyMax}
+                            name='policyMax'
+                            onChange={this.handleInputChange}/>
+                        </label>
+                        <label>Age <i class="far fa-question-circle"></i>
+                            <br />
+                            <input
+                            type='text'
+                            placeholder='Choose your age'
+                            value={this.state.age}
+                            name='age'
+                            onChange={this.handleInputChange}/>
+                        </label>
+                    </div>
                     <br />
-                    <label>Travel Dates &#63;
-                        <input
-                        type='text'
-                        placeholder='Start date'
-                        value={this.state.startDate}
-                        name='startDate'
-                        onChange={this.handleInputChange}/>
-                        <input
-                        type='text'
-                        placeholder='End date'
-                        value={this.state.endDate}
-                        name='endDate'
-                        onChange={this.handleInputChange}/>
-                    </label>
-                    <label>Citizenship &#63;
-                        <input
-                        type='text'
-                        placeholder='Choose your country of citizenship'
-                        value={this.state.citizenShip}
-                        name='citizenShip'
-                        onChange={this.handleInputChange}/>
-                    </label>
+                    <div className="formRow">
+                        <label>Travel Dates (mm/dd/yyyy)<i class="far fa-question-circle"></i>
+                            <br />
+                            <input 
+                            className='travelInput'
+                            type='text'
+                            placeholder='Start date'
+                            value={this.state.startDate}
+                            name='startDate'
+                            onChange={this.handleInputChange}/>
+                            <input
+                            className='travelInput'
+                            type='text'
+                            placeholder='End date'
+                            value={this.state.endDate}
+                            name='endDate'
+                            onChange={this.handleInputChange}/>
+                        </label>
+                        <label>Citizenship <i class="far fa-question-circle"></i>
+                            <br />
+                            <input
+                            type='text'
+                            placeholder='Choose your country of citizenship'
+                            value={this.state.citizenShip}
+                            name='citizenShip'
+                            onChange={this.handleInputChange}/>
+                        </label>
+                    </div>
                     <br />
-                    <label>Mailing State &#63;
-                        <input
-                        type='text'
-                        placeholder='Choose state'
-                        value={this.state.mailingState}
-                        name='mailingState'
-                        onChange={this.handleInputChange}/>
-                    </label>
+                    <div className="formRow">
+                        <label>Mailing State <i class="far fa-question-circle"></i>
+                            <br />
+                            <input
+                            type='text'
+                            placeholder='Choose state'
+                            value={this.state.mailingState}
+                            name='mailingState'
+                            onChange={this.handleInputChange}/>
+                        </label>
+                    </div>
+                    <button>GET QUOTES</button>
                 </form>
             </div>
         )

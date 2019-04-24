@@ -1,3 +1,42 @@
-div {
-    border: grey;
+.mainDiv {
+    border: 1px solid lightgrey;
+    width: 700px;
+    margin: auto;
 }
+
+.formTop {
+    height: 80px;
+    background-color: #e0e0e0;
+    color: navy;
+    font-family: "Verdana";
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Arial';
+    font-size: 15px;
+    margin: 10px;
+}
+
+input {
+    width: 330px;
+    height: 30px;
+    border-radius: 2px;
+    border: 1px solid lightgrey;
+}
+
+
+
+.travelInput {
+    width: 165px;
+}
+
+
