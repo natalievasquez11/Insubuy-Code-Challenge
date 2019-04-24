@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import logo from './logo.png';
 
 class Form extends Component {
     state = {
@@ -25,7 +26,7 @@ class Form extends Component {
             <div className='mainDiv'>
                 <form>
                     <div className='formTop'>
-                        <p>Travel Insurance</p>
+                        <img src={logo} alt='logo' /><p>Travel Insurance</p>
                     </div>
                     <div className="formRow">
                         <label>Policy Maximum <i class="far fa-question-circle"></i>
@@ -49,7 +50,7 @@ class Form extends Component {
                     </div>
                     <br />
                     <div className="formRow">
-                        <label>Travel Dates (mm/dd/yyyy)<i class="far fa-question-circle"></i>
+                        <label>Travel Dates (mm/dd/yyyy) <i class="far fa-question-circle"></i>
                             <br />
                             <input 
                             className='travelInput'
@@ -88,7 +89,12 @@ class Form extends Component {
                             onChange={this.handleInputChange}/>
                         </label>
                     </div>
-                    <button>GET QUOTES</button>
+                    <div className="submit">
+                        <button>GET QUOTES</button>
+                    </div>
+                    <div className="reset">
+                        <a href="/" >RESET FORM</a>
+                    </div>
                 </form>
             </div>
         )

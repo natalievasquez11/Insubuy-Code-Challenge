@@ -2,13 +2,14 @@
     border: 1px solid lightgrey;
     width: 700px;
     margin: auto;
+    margin-top: 50px;
 }
 
 .formTop {
     height: 80px;
-    background-color: #e0e0e0;
+    background-color: #F6F5F5;
     color: navy;
-    font-family: "Verdana";
+    font-family: 'Verdana';
     display: flex;
     flex-direction: column;
 }
@@ -16,6 +17,7 @@
 p {
     margin-top: auto;
     margin-bottom: auto;
+    float: right;
 }
 
 .formRow {
@@ -33,10 +35,41 @@ input {
     border: 1px solid lightgrey;
 }
 
-
+img {
+    width: 100px;
+    float: left;
+    clear: left;
+}
 
 .travelInput {
     width: 165px;
+}
+
+.submit {
+    text-align: center;
+    margin: 50px 15px 15px 15px;
+}
+
+button {
+    background-color: orange;
+    border-radius: 2px;
+    border: 1px solid orange;
+    width: 98%;
+    color: white;
+    height: 35px;
+    font-size: 15px;
+}
+
+.reset {
+    text-align: center;
+    margin: 20px;
+}
+
+a {
+    text-align: center;
+    font-style: italic;
+    font-family: 'Arial';
+    font-size: 15px;
 }
 
 
