@@ -35,6 +35,12 @@ input {
     border: 1px solid lightgrey;
 }
 
+select {
+    width: 330px;
+    height: 34px;
+    background-color: white;
+}
+
 img {
     width: 100px;
     float: left;
@@ -70,6 +76,33 @@ a {
     font-style: italic;
     font-family: 'Arial';
     font-size: 15px;
+}
+
+@media screen and (max-width: 600px) {
+    .mainDiv {
+        width: 500px;
+    }
+
+    .formRow {
+        flex-direction: column;
+        margin: 0px;
+    }
+
+    input, select{
+        width: 480px;
+    }
+
+    .travelInput {
+        width: 238px;
+    }
+
+    label {
+        margin: 8px;
+    }
+
+    button {
+        width: 200px;
+    }
 }
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-import logo from './logo.png';
+//import axios from 'axios';
 
 class Form extends Component {
     state = {
@@ -21,24 +21,47 @@ class Form extends Component {
         });
     };
 
+    handleSubmit = event => {
+        console.log("you've submitted.");
+    }
+
+    //Function clears form when reset link is clicked.
+    handleReset = event => {
+        event.preventDefault();
+
+        this.setState({
+            startDate: '',
+            endDate: '',
+            citizenShip: '',
+            policyMax: '',
+            age: '',
+            mailingState: ''
+        });
+    }
+
     render() {
         return (
             <div className='mainDiv'>
                 <form>
                     <div className='formTop'>
-                        <img src={logo} alt='logo' /><p>Travel Insurance</p>
+                        <p>Travel Insurance</p>
                     </div>
                     <div className="formRow">
-                        <label>Policy Maximum <i class="far fa-question-circle"></i>
+                        <label>Policy Maximum <i className="far fa-question-circle"></i>
                             <br />
-                            <input
+                            <select
                             type='text'
-                            placeholder='Choose your policy maximum'
                             value={this.state.policyMax}
                             name='policyMax'
-                            onChange={this.handleInputChange}/>
+                            onChange={this.handleInputChange}>
+                                <option value="">Choose your policy maximum</option>
+                                <option value="50">50,000</option>
+                                <option value="100">100,000</option>
+                                <option value="250">250,000</option>
+                                <option value="500">500,000</option>
+                            </select>
                         </label>
-                        <label>Age <i class="far fa-question-circle"></i>
+                        <label>Age <i className="far fa-question-circle"></i>
                             <br />
                             <input
                             type='text'
@@ -50,7 +73,7 @@ class Form extends Component {
                     </div>
                     <br />
                     <div className="formRow">
-                        <label>Travel Dates (mm/dd/yyyy) <i class="far fa-question-circle"></i>
+                        <label>Travel Dates (mm/dd/yyyy) <i className="far fa-question-circle"></i>
                             <br />
                             <input 
                             className='travelInput'
@@ -67,7 +90,7 @@ class Form extends Component {
                             name='endDate'
                             onChange={this.handleInputChange}/>
                         </label>
-                        <label>Citizenship <i class="far fa-question-circle"></i>
+                        <label>Citizenship <i className="far fa-question-circle"></i>
                             <br />
                             <input
                             type='text'
@@ -79,7 +102,7 @@ class Form extends Component {
                     </div>
                     <br />
                     <div className="formRow">
-                        <label>Mailing State <i class="far fa-question-circle"></i>
+                        <label>Mailing State <i className="far fa-question-circle"></i>
                             <br />
                             <input
                             type='text'
@@ -90,10 +113,12 @@ class Form extends Component {
                         </label>
                     </div>
                     <div className="submit">
-                        <button>GET QUOTES</button>
+                        <button
+                            onSubmit={this.handleSubmit}
+                        >GET QUOTES</button>
                     </div>
                     <div className="reset">
-                        <a href="/" >RESET FORM</a>
+                        <a href='#' onClick={this.handleReset} >RESET FORM</a>
                     </div>
                 </form>
             </div>
