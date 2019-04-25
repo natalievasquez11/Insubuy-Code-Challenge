@@ -25,6 +25,22 @@ class Form extends Component {
         });
     };
 
+    //Function clears form when reset link is clicked.
+    handleReset = event => {
+        event.preventDefault();
+
+        this.setState({
+            startDate: '',
+            endDate: '',
+            citizenShip: '',
+            policyMax: '',
+            age: '',
+            mailingState: '',
+            error: '',
+            quotes: []
+        });
+    }
+
     handleSubmit = event => {
         event.preventDefault();
 
@@ -39,7 +55,7 @@ class Form extends Component {
         let currentYear = new Date().getFullYear();
 
         //Validating policy max has a value
-        if(formInputs.policyMax === '') {
+        if (formInputs.policyMax === '') {
             this.setState({
                 error: 'Please choose a value for Policy Maximum.'
             })
@@ -47,7 +63,7 @@ class Form extends Component {
         }
 
         //Validating citizenship has a value and does not include numbers or special characters.
-        if(!formInputs.citizenShip) {
+        if (!formInputs.citizenShip) {
             this.setState({
                 error: 'Please enter a value for Citizenship.'
             })
@@ -60,7 +76,7 @@ class Form extends Component {
         }
 
         //Validating mailing state has a value and does not include numbers or special characters.
-        if(!formInputs.mailingState) {
+        if (!formInputs.mailingState) {
             this.setState({
                 error: 'Please enter a value for Mailing State.'
             })
@@ -73,28 +89,27 @@ class Form extends Component {
         }
 
         //Validating age 1 to 100 using age or birthyear only and has a value
-        if(!formInputs.age) {
+        if (!formInputs.age) {
             this.setState({
                 error: 'Please enter a value for Age.'
             })
             return;
-        } else if(formInputs.age.match(/[0-9]\d\d\d/)) {
-            if(formInputs.age > currentYear || formInputs.age < currentYear - 100) {
+        } else if (formInputs.age.match(/[0-9]\d\d\d/)) {
+            if (formInputs.age > currentYear || formInputs.age < currentYear - 100) {
                 this.setState({
                     error: 'Error: Please enter a valid year, age must be no older than 100.'
                 })
                 return;
             }
-        } else if(!formInputs.age.match(/^[1-9][0-9]?$|^100$/)) {
+        } else if (!formInputs.age.match(/^[1-9][0-9]?$|^100$/)) {
             this.setState({
                 error: 'Error: Please enter a valid age, no older than 100.'
             })
             return;
-        } 
+        }
 
-        console.log(new Date(formInputs.startDate));
         //Validate start date has a value and has mm/dd/yyyy format
-        if(!formInputs.startDate) {
+        if (!formInputs.startDate) {
             this.setState({
                 error: 'Please enter a value for Start Date.'
             })
@@ -107,7 +122,7 @@ class Form extends Component {
         }
 
         //Validate end date has a value, has mm/dd/yyyy format and is after start date
-        if(!formInputs.endDate) {
+        if (!formInputs.endDate) {
             this.setState({
                 error: 'Please enter a value for End Date.'
             })
@@ -117,7 +132,7 @@ class Form extends Component {
                 error: 'Error: Please enter a valid end date format.'
             })
             return;
-        } else if(formInputs.endDate <= formInputs.startDate) {
+        } else if (formInputs.endDate <= formInputs.startDate) {
             this.setState({
                 error: 'Error: Please enter an end date that is after the start date.'
             })
@@ -125,34 +140,19 @@ class Form extends Component {
         }
 
         axios.post('/quotes/', formInputs)
+        .then(res => {
+
+            console.log(res);
+            axios.get('/quotes/')
             .then(res => {
-                console.log(res);
 
-                axios.get('/quotes/')
-                    .then(res => {
-
-                        this.setState({
-                            quotes: res.data.quotes
-                        })
-                    });
-            })
-            .catch(error => {
-                console.log(error.message);
+                this.setState({
+                    quotes: res.data.quotes
+                })
             });
-    }
-
-    //Function clears form when reset link is clicked.
-    handleReset = event => {
-        event.preventDefault();
-
-        this.setState({
-            startDate: '',
-            endDate: '',
-            citizenShip: '',
-            policyMax: '',
-            age: '',
-            mailingState: '',
-            error: ''
+        })
+        .catch(error => {
+            console.log(error.message);
         });
     }
 
@@ -187,7 +187,7 @@ class Form extends Component {
                                     placeholder='Choose your age'
                                     value={this.state.age}
                                     name='age'
-                                    onChange={this.handleInputChange}/>
+                                    onChange={this.handleInputChange} />
                             </label>
                         </div>
                         <br />

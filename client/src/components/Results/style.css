@@ -1,3 +1,8 @@
+.mainQuoteDiv {
+    display: flex;
+    flex-direction: column;
+}
+
 .allQuotes {
     display: flex;
     flex-direction: row;
@@ -25,4 +30,28 @@
     font-style: italic;
     margin: 15px 0 15px 0;
 }
+
+.viewBtn {
+    height: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    background-color: orange; 
+    color: white; 
+    padding: 0px; 
+    border-radius: 2px;
+    float: left; 
+    margin: auto;
+}
+
+.viewGrp {
+    flex-direction: row;
+    width: 150px;
+    border-radius: 2px;
+    border: 1px solid white;
+}
+
+.viewGrp:active, .viewGrp:hover {
+    background-color: rgb(209, 116, 2);
+}   
 
