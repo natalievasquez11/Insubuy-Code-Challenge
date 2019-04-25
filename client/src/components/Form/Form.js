@@ -36,7 +36,9 @@ class Form extends Component {
             age: this.state.age,
             mailingState: this.state.mailingState
         };
+        let currentYear = new Date().getFullYear();
 
+        //Validating policy max has a value
         if(formInputs.policyMax === '') {
             this.setState({
                 error: 'Please choose a value for Policy Maximum.'
@@ -44,9 +46,10 @@ class Form extends Component {
             return;
         }
 
+        //Validating citizenship has a value and does not include numbers or special characters.
         if(!formInputs.citizenShip) {
             this.setState({
-                error: 'Please enter a value for citizenShip.'
+                error: 'Please enter a value for Citizenship.'
             })
             return;
         } else if (!formInputs.citizenShip.match(/^[a-zA-Z]*$/)) {
@@ -55,6 +58,43 @@ class Form extends Component {
             })
             return;
         }
+
+        //Validating mailing state has a value and does not include numbers or special characters.
+        if(!formInputs.mailingState) {
+            this.setState({
+                error: 'Please enter a value for Mailing State.'
+            })
+            return;
+        } else if (!formInputs.mailingState.match(/^[a-zA-Z]*$/)) {
+            this.setState({
+                error: 'Error: Mailing State does not allow numbers or special characters.'
+            })
+            return;
+        }
+
+        //Validating age 1 to 100 using age or birthyear only and has a value
+        if(!formInputs.age) {
+            this.setState({
+                error: 'Please enter a value for Age.'
+            })
+            return;
+        } else if(formInputs.age.match(/[0-9]\d\d\d/)) {
+            if(formInputs.age > currentYear || formInputs.age < currentYear - 100) {
+                this.setState({
+                    error: 'Error: Please enter a valid year, age must be no older than 100.'
+                })
+                return;
+            }
+        } else if(!formInputs.age.match(/^[1-9][0-9]?$|^100$/)) {
+            this.setState({
+                error: 'Error: Please enter a valid age, no older than 100.'
+            })
+            return;
+        } 
+
+        //Validate start date has a value and has mm/dd/yyyy format
+
+        //Validate end date has a value, has mm/dd/yyyy format and is after start date
 
         axios.post('/quotes/', formInputs)
             .then(res => {
@@ -83,7 +123,8 @@ class Form extends Component {
             citizenShip: '',
             policyMax: '',
             age: '',
-            mailingState: ''
+            mailingState: '',
+            error: ''
         });
     }
 
@@ -127,14 +168,14 @@ class Form extends Component {
                                 <br />
                                 <input
                                     className='travelInput'
-                                    type='text'
+                                    type='date'
                                     placeholder='Start date'
                                     value={this.state.startDate}
                                     name='startDate'
                                     onChange={this.handleInputChange} />
                                 <input
                                     className='travelInput'
-                                    type='text'
+                                    type='date'
                                     placeholder='End date'
                                     value={this.state.endDate}
                                     name='endDate'

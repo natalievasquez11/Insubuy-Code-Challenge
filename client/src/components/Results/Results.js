@@ -4,9 +4,9 @@ import './style.css';
 function Results(props) {
     return(
         <div className='allQuotes'>
-            {props.quotes.map(quote => {
+            {props.quotes.map((quote, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                         <div className='quoteDiv'>
                             <input type='checkbox' className='compareBox'/>
                             <p className='quoteName'>{quote.name}</p>
