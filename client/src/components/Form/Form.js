@@ -11,7 +11,8 @@ class Form extends Component {
         policyMax: '',
         age: '',
         mailingState: '',
-        quotes: []
+        quotes: [],
+        error: ''
     }
 
     handleInputChange = event => {
@@ -19,7 +20,8 @@ class Form extends Component {
         const value = event.target.value;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            error: ''
         });
     };
 
@@ -35,6 +37,25 @@ class Form extends Component {
             mailingState: this.state.mailingState
         };
 
+        if(formInputs.policyMax === '') {
+            this.setState({
+                error: 'Please choose a value for Policy Maximum.'
+            })
+            return;
+        }
+
+        if(!formInputs.citizenShip) {
+            this.setState({
+                error: 'Please enter a value for citizenShip.'
+            })
+            return;
+        } else if (!formInputs.citizenShip.match(/^[a-zA-Z]*$/)) {
+            this.setState({
+                error: 'Error: Citizenship does not allow numbers or special characters.'
+            })
+            return;
+        }
+
         axios.post('/quotes/', formInputs)
             .then(res => {
                 console.log(res);
@@ -46,6 +67,9 @@ class Form extends Component {
                             quotes: res.data.quotes
                         })
                     });
+            })
+            .catch(error => {
+                console.log(error.message);
             });
     }
 
@@ -71,6 +95,7 @@ class Form extends Component {
                         <div className='formTop'>
                             <p>Travel Insurance</p>
                         </div>
+                        {this.state.error ? <p className='errorMessage'>{this.state.error}</p> : null}
                         <div className='formRow'>
                             <label>Policy Maximum <i className='far fa-question-circle'></i>
                                 <br />
@@ -93,7 +118,7 @@ class Form extends Component {
                                     placeholder='Choose your age'
                                     value={this.state.age}
                                     name='age'
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handleInputChange}/>
                             </label>
                         </div>
                         <br />
