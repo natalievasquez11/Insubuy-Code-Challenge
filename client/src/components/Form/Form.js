@@ -92,9 +92,37 @@ class Form extends Component {
             return;
         } 
 
+        console.log(new Date(formInputs.startDate));
         //Validate start date has a value and has mm/dd/yyyy format
+        if(!formInputs.startDate) {
+            this.setState({
+                error: 'Please enter a value for Start Date.'
+            })
+            return;
+        } else if (new Date(formInputs.startDate) === 'Invalid Date') {
+            this.setState({
+                error: 'Error: Please enter a valid start date format.'
+            })
+            return;
+        }
 
         //Validate end date has a value, has mm/dd/yyyy format and is after start date
+        if(!formInputs.endDate) {
+            this.setState({
+                error: 'Please enter a value for End Date.'
+            })
+            return;
+        } else if (new Date(formInputs.endDate) === 'Invalid Date') {
+            this.setState({
+                error: 'Error: Please enter a valid end date format.'
+            })
+            return;
+        } else if(formInputs.endDate <= formInputs.startDate) {
+            this.setState({
+                error: 'Error: Please enter an end date that is after the start date.'
+            })
+            return;
+        }
 
         axios.post('/quotes/', formInputs)
             .then(res => {
