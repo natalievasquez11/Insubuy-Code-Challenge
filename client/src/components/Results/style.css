@@ -3,19 +3,34 @@
     flex-direction: column;
 }
 
-.allQuotes {
+.gridView {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.quoteDiv {
+.gridView .quoteInfo {
     background-color: rgb(247, 247, 247);
     height: 175px;
     width: 200px;
     margin: 30px 30px 30px 30px;
     text-align: center;
+}
+
+.listView {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.listView .quoteInfo {
+    background-color: rgb(247, 247, 247);
+    text-align: center;
+    height: 125px;
+    margin: 10px;
 }
 
 .quoteName {
@@ -31,27 +46,41 @@
     margin: 15px 0 15px 0;
 }
 
+.quotePrice {
+    font-size: 20px;
+    font-family: 'Arial';
+    margin-bottom: 2px;
+}
+
 .viewBtn {
     height: 20px;
     width: 300px;
     display: flex;
     flex-direction: row;
-    background-color: orange; 
-    color: white; 
     padding: 0px; 
     border-radius: 2px;
-    float: left; 
+    /* float: left;  */
     margin: auto;
 }
 
 .viewGrp {
+    background-color: orange;
+    color: white;
+    font-family: 'Arial';
+    font-size: 15px;
     flex-direction: row;
     width: 150px;
     border-radius: 2px;
     border: 1px solid white;
 }
 
+.sortInput {
+    flex-wrap: wrap;
+    margin: auto;
+}
+
 .viewGrp:active, .viewGrp:hover {
     background-color: rgb(209, 116, 2);
 }   
+
 
